@@ -1,43 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Header -->
-    <header id="header">
-        <!-- h1 -->
-        <h1>Weather Dashboard</h1>
-    </header>
-    <!-- Main -->
-    <main class="container">
-        <div class="row">
-            <!-- left column -->
-            <div class="col">
-                <!-- h2 -->
-                <!-- search bar -->
+    <main class="section">
+        <div class="columns">
+            <div class="column is-one-quarter">
+                <!-- find a city -->
+                <h2>Search for a city:</h2>
+                <!-- input -->
                 <!-- search history -->
             </div>
-            <!-- right column -->
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <!-- searched city -->
-                        <!-- temperature -->
-                        <!-- humidity -->
-                        <!-- wind speed -->
-                        <!-- uv index -->
-                    </div>
-                    <div class="col">
-                        <!-- 5 day forcast -->
-                    </div>
+            <!-- searched information -->
+            <div class="column">
+                <!-- searched city -->
+                <h2>Atlanta</h2>
+                <!-- temperature -->
+                <p>Temperature: 90.9 F</p>
+                <!-- humidity -->
+                <p>Himidity: 41%</p>
+                <!-- wind speed -->
+                <p>Wind Speed: 4.7 MPH</p>
+                <!-- uv index -->
+                <p>UV Index: 9.49</p>
+                <!-- 5 day forcast -->
+                <div class="colum">
+                    <h2>5 Day Forcast:</h2>
                 </div>
             </div>
-        </div>
     </main>
 </body>
 
