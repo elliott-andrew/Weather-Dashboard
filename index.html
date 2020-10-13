@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="develop/style.css">
 </head>
 
 <body>
@@ -21,21 +21,23 @@
             <!-- searched information -->
             <div class="column">
                 <!-- searched city -->
-                <h2>Atlanta</h2>
+                <h2 id="current-city"></h2>
                 <!-- temperature -->
-                <p>Temperature: 90.9 F</p>
+                <p id="temperature"></p>
                 <!-- humidity -->
-                <p>Himidity: 41%</p>
+                <p id="humidity"></p>
                 <!-- wind speed -->
-                <p>Wind Speed: 4.7 MPH</p>
+                <p id="wind-speed"></p>
                 <!-- uv index -->
-                <p>UV Index: 9.49</p>
+                <p id="uv-index"></p>
                 <!-- 5 day forcast -->
                 <div class="colum">
                     <h2>5 Day Forcast:</h2>
                 </div>
             </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="develop/script.js"></script>
 </body>
 
 </html>
