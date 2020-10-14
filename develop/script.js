@@ -68,6 +68,8 @@ function fiveDayForecast() {
         url: fiveDayForecastURL,
         method: "GET"
     }).then(function (response) {
+        var forecastTitle = $("<h2>").text("Five Day Forecast:")
+        $("#forecast").append(forecastTitle);
         // loop through all days
         for (let i = 0; i < response.list.length; i++) {
             $("#day-" + i).empty();
