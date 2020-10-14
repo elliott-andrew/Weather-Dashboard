@@ -4,6 +4,8 @@ var searchedCity = "Seattle";
 // URL for current weather data
 var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&units=imperial&appid=068008542218df571052276addfd8640";
 
+var fiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchedCity + "&units=imperial&appid=068008542218df571052276addfd8640"
+
 // Pull data for current weather
 $.ajax({
     url: currentWeatherURL,
@@ -11,11 +13,11 @@ $.ajax({
 }).then(function (response) {
     console.log(response);
     // add searched city to page
-    $("#current-city-info").append($("<h2>").text(searchedCity))
+    $("#current-city-info").append($("<h2>").text(searchedCity));
     // get current temp
     var currentTemp = $("<p>").text("Current temperature: " + response.main.temp + "°F");
     // add current temp to page
-    $("#current-city-info").append(currentTemp)
+    $("#current-city-info").append(currentTemp);
     // get humidity
     var currentHum = $("<p>").text("Current humidity: " + response.main.humidity + "%");
     // add humidity to page
@@ -24,5 +26,22 @@ $.ajax({
     var windSpeed = $("<p>").text("Wind speed: " + response.wind.speed + "MPH");
     // add wind speed to page
     $("#current-city-info").append(windSpeed);
+});
+
+$.ajax({
+    url: fiveDayForecast,
+    method: "GET"
+}).then(function (response) {
+    console.log(fiveDayForecast);
+    console.log(response);
+    // Day 1
+
+    // Day 2
+
+    // Day 3
+
+    // Day 4
+
+    // Day 5
 
 });
