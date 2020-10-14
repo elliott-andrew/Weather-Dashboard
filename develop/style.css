@@ -1,0 +1,36 @@
+#header {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+.container h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 2rem;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.container p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.container ul {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    text-align: left;
+    list-style-type: none;
+    margin: 10px 0px 0px 0px;
+}
