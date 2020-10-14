@@ -69,6 +69,7 @@ function fiveDayForecast() {
         method: "GET"
     }).then(function (response) {
         var forecastTitle = $("<h2>").text("Five Day Forecast:")
+        $("#forecast").empty();
         $("#forecast").append(forecastTitle);
         // loop through all days
         for (let i = 0; i < response.list.length; i++) {
@@ -78,11 +79,11 @@ function fiveDayForecast() {
             // add the date to the page
             $("#day-" + i).append(dateFore);
             // pull the temp
-            var tempFore = $("<p>").text("Tempurature: " + response.list[i].main.temp + "°F");
+            var tempFore = $("<p>").text("Tempurature:\n" + response.list[i].main.temp + "°F");
             // add the temp to the page
             $("#day-" + i).append(tempFore);
             // pull the humidity
-            var humFore = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
+            var humFore = $("<p>").text("Humidity:\n" + response.list[i].main.humidity + "%");
             // add the humidity to the page
             $("#day-" + i).append(humFore);
         }
@@ -97,7 +98,7 @@ $('#search-button').click(function (event) {
     var city = $("<li>").text($('#city-text').val());
     // appaend the li element to the list of previously searched cities
     citiesSearchList.push($('#city-text').val());
-    $('#city-list').append(city)
+    $('#city-list').prepend(city)
     console.log(citiesSearchList)
     renderCurrent();
     fiveDayForecast();
