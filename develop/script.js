@@ -9,6 +9,7 @@ var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?lat=" + currentLat + "
 var currentLat;
 var currentLon;
 var citiesSearch = [];
+console.log(citiesSearch);
 
 $('#search-button').click(function (event) {
     event.preventDefault();
