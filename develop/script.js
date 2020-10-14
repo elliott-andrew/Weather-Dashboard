@@ -64,8 +64,16 @@ function renderCurrent() {
         currentLat = response.coord.lat;
         console.log(currentLon)
         console.log(currentLat)
-        var uvIndex = `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`;
-        console.log(uvIndex)
+        var uvIndexURL = `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`;
+        console.log(uvIndexURL)
+        $.ajax({
+            url: uvIndexURL,
+            method: "GET"
+        }).then(function (uvresponse) {
+            console.log(uvresponse);
+            var uvIndexNumber = $("<p>").text("UV index: " + uvresponse.value);
+            $("#current-city-info").append(uvIndexNumber);
+        });
 
     });
 
