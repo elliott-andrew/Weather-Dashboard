@@ -62,6 +62,10 @@ function renderCurrent() {
         $("#current-city-info").append(windSpeed);
         currentLon = response.coord.lon;
         currentLat = response.coord.lat;
+        console.log(currentLon)
+        console.log(currentLat)
+        var uvIndex = `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`;
+        console.log(uvIndex)
 
     });
 
