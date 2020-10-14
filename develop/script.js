@@ -60,7 +60,6 @@ function renderCurrent() {
             var uvIndexNumber = $("<p>").text("UV index: " + uvresponse.value);
             $("#current-city-info").append(uvIndexNumber);
         });
-
     });
 }
 // Five Day
@@ -84,7 +83,6 @@ function fiveDayForecast() {
             var humFore = $("<p>").text("Humidity: " + response.list[i].main.humidity + "%");
             // add the humidity to the page
             $("#day-" + i).append(humFore);
-
         }
     });
 }
