@@ -12,7 +12,6 @@ var fiveDayForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${s
 var currentLat;
 var currentLon;
 var citiesSearchList = [];
-console.log(citiesSearchList);
 
 // When a user searches for a city
 // I display the city name
@@ -52,15 +51,12 @@ function renderCurrent() {
         $("#current-city-info").append(windSpeed);
         currentLon = response.coord.lon;
         currentLat = response.coord.lat;
-        console.log(currentLon)
-        console.log(currentLat)
         var uvIndexURL = `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`;
         console.log(uvIndexURL)
         $.ajax({
             url: uvIndexURL,
             method: "GET"
         }).then(function (uvresponse) {
-            console.log(uvresponse);
             var uvIndexNumber = $("<p>").text("UV index: " + uvresponse.value);
             $("#current-city-info").append(uvIndexNumber);
         });
@@ -73,9 +69,9 @@ function fiveDayForecast() {
         url: fiveDayForecastURL,
         method: "GET"
     }).then(function (response) {
-        console.log("five day", response);
         // loop through all days
         for (let i = 0; i < response.list.length; i++) {
+            $("#day-" + i).empty();
             // Pull the date
             var dateFore = $("<p>").text("Date: " + response.list[i].dt_txt.substring(0, 10));
             // add the date to the page
