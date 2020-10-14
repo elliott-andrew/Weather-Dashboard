@@ -23,12 +23,6 @@ $('#search-button').click(function (event) {
     console.log(citiesSearch)
 });
 
-
-// $(function storeCity() {
-//     // Stringify and set "cities" key in localStorage to cities array
-//     localStorage.setItem("citiesSearch", JSON.stringify(citiesSearch));
-// })
-
 // Pull five day forecast
 $.ajax({
     url: fiveDayForecastURL,
