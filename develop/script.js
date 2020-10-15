@@ -1,17 +1,14 @@
 // DOM Elements
-// Searched City
-var searchedCity = "Seattle";
 // This is our API key
 var apiKey = "068008542218df571052276addfd8640"
-// URL for current weather data
-var currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=imperial&appid=${apiKey}`;
-var fiveDayForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity}&units=imperial&cnt=5&appid=${apiKey}`;
 // var uvIndex = `http://api.openweathermap.org/data/2.5/uvi?lat=" + currentLat + "&lon=" + currentLon + "&appid=${apiKey}`;
 
 // Data
 var currentLat;
 var currentLon;
 var citiesSearchList = [];
+// Searched City
+var searchedCity = "Seattle";
 
 // When a user searches for a city
 // I display the city name
@@ -25,9 +22,27 @@ var citiesSearchList = [];
 // I need to save each city a user searches
 // When those saved cities are clicked again, the weather is displayed
 
+// search button click event
+$('#search-button').click(function (event) {
+    // prevent page from reloading
+    event.preventDefault();
+    // create an li element with the searched city
+    var city = $("<li>").text($('#city-text').val());
+    // appaend the li element to the list of previously searched cities
+    citiesSearchList.push($('#city-text').val());
+    $('#city-list').prepend(city)
+    console.log(citiesSearchList)
+    searchedCity = $('#city-text').val();
+    renderCurrent();
+    fiveDayForecast();
+});
+
 // Helper Functions
 // Pull five day forecast
 function renderCurrent() {
+    // URL for current weather data
+    var currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=imperial&appid=${apiKey}`;
+
     // Pull data for current weather
     $.ajax({
         url: currentWeatherURL,
@@ -64,6 +79,8 @@ function renderCurrent() {
 }
 // Five Day
 function fiveDayForecast() {
+    var fiveDayForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity}&units=imperial&cnt=5&appid=${apiKey}`;
+
     $.ajax({
         url: fiveDayForecastURL,
         method: "GET"
@@ -89,17 +106,3 @@ function fiveDayForecast() {
         }
     });
 }
-
-// search button click event
-$('#search-button').click(function (event) {
-    // prevent page from reloading
-    event.preventDefault();
-    // create an li element with the searched city
-    var city = $("<li>").text($('#city-text').val());
-    // appaend the li element to the list of previously searched cities
-    citiesSearchList.push($('#city-text').val());
-    $('#city-list').prepend(city)
-    console.log(citiesSearchList)
-    renderCurrent();
-    fiveDayForecast();
-});
