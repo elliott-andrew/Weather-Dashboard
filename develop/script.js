@@ -30,10 +30,15 @@ $('#search-button').click(function (event) {
     var city = $("<li>").text($('#city-text').val());
     // appaend the li element to the list of previously searched cities
     citiesSearchList.push($('#city-text').val());
+    // add item to local storage
+    localStorage.setItem("Cities:", JSON.stringify(citiesSearchList));
+    // Add latest search to top of list
     $('#city-list').prepend(city)
-    console.log(citiesSearchList)
+    // Add the latest search to the API URLs
     searchedCity = $('#city-text').val();
+    // Display current weather
     renderCurrent();
+    // Display five day forecast
     fiveDayForecast();
 });
 
@@ -106,3 +111,10 @@ function fiveDayForecast() {
         }
     });
 }
+console.log(citiesSearchList)
+
+// // Store cities to local storage
+// $(function storeCity() {
+//     // Stringify and set "cities" key in localStorage to cities array
+//     localStorage.setItem(JSON.stringify(citiesSearchList));
+// })
