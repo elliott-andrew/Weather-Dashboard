@@ -12,6 +12,7 @@ var searchedCity = "Seattle";
 
 // search button click event
 $('#search-button').click(function (event) {
+    // empty out the search field after user submits
     // prevent page from reloading
     event.preventDefault();
     // create an li element with the searched city
@@ -28,6 +29,7 @@ $('#search-button').click(function (event) {
     renderCurrent();
     // Display five day forecast
     fiveDayForecast();
+    $('#city-text').val('');
 });
 
 // Functions
@@ -75,6 +77,7 @@ function renderCurrent() {
         });
     });
 }
+
 // Five Day
 function fiveDayForecast() {
     // API URL
