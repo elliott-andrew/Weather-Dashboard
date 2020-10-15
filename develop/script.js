@@ -99,10 +99,3 @@ function fiveDayForecast() {
         }
     });
 }
-console.log(citiesSearchList)
-
-// // Store cities to local storage
-// $(function storeCity() {
-//     // Stringify and set "cities" key in localStorage to cities array
-//     localStorage.setItem(JSON.stringify(citiesSearchList));
-// })
