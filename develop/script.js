@@ -10,18 +10,6 @@ var citiesSearchList = [];
 // Searched City
 var searchedCity = "Seattle";
 
-// When a user searches for a city
-// I display the city name
-// The current temp
-// the current humidity
-// the current wind speed
-// the current UV index
-// need the lat
-// need the lon
-// The 5 day forecast
-// I need to save each city a user searches
-// When those saved cities are clicked again, the weather is displayed
-
 // search button click event
 $('#search-button').click(function (event) {
     // prevent page from reloading
