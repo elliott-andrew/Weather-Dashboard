@@ -43,10 +43,17 @@ function renderCurrent() {
         url: currentWeatherURL,
         method: "GET"
     }).then(function (response) {
+        console.log("current weather", response);
         // Empty the current city section
         $("#current-city-info").empty()
         // add searched city to page
-        $("#current-city-info").append($("<h2>").text(searchedCity));
+        var currentCity = $("<h2>").text(searchedCity);
+        // pull current weather icon
+        var weatherIcon = $("<img src='http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png' style='margin-left:10px;'/>");
+        // append weather icon to city 
+        currentCity.append(weatherIcon);
+        // append city to page
+        $("#current-city-info").append(currentCity);
         // get current temp
         var currentTemp = $("<p>").text("Current temperature: " + response.main.temp + "°F");
         // add current temp to page
