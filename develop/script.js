@@ -1,11 +1,11 @@
-// DOM Elements
-// This is our API key
-var apiKey = "068008542218df571052276addfd8640"
-// var uvIndex = `http://api.openweathermap.org/data/2.5/uvi?lat=" + currentLat + "&lon=" + currentLon + "&appid=${apiKey}`;
-
 // Data
+// API key
+var apiKey = "068008542218df571052276addfd8640"
+// Current latitude
 var currentLat;
+// Current longitude 
 var currentLon;
+// Searched Cities array
 var citiesSearchList = [];
 // Searched City
 var searchedCity = "Seattle";
@@ -30,7 +30,7 @@ $('#search-button').click(function (event) {
     fiveDayForecast();
 });
 
-// Helper Functions
+// Functions
 // Pull five day forecast
 function renderCurrent() {
     // URL for current weather data
@@ -41,7 +41,7 @@ function renderCurrent() {
         url: currentWeatherURL,
         method: "GET"
     }).then(function (response) {
-        console.log("current city: ", response);
+        // Empty the current city section
         $("#current-city-info").empty()
         // add searched city to page
         $("#current-city-info").append($("<h2>").text(searchedCity));
@@ -57,32 +57,42 @@ function renderCurrent() {
         var windSpeed = $("<p>").text("Wind speed: " + response.wind.speed + "MPH");
         // add wind speed to page
         $("#current-city-info").append(windSpeed);
+        // pull the current longitude
         currentLon = response.coord.lon;
+        // pull the current latitude
         currentLat = response.coord.lat;
+        // insert both into the URL
         var uvIndexURL = `http://api.openweathermap.org/data/2.5/uvi?lat=${currentLat}&lon=${currentLon}&appid=${apiKey}`;
-        console.log(uvIndexURL)
+        // make API request
         $.ajax({
             url: uvIndexURL,
             method: "GET"
         }).then(function (uvresponse) {
+            // get the current UV index
             var uvIndexNumber = $("<p>").text("UV index: " + uvresponse.value);
+            // add the current UV index to the page
             $("#current-city-info").append(uvIndexNumber);
         });
     });
 }
 // Five Day
 function fiveDayForecast() {
+    // API URL
     var fiveDayForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity}&units=imperial&cnt=5&appid=${apiKey}`;
-
+    // make API request
     $.ajax({
         url: fiveDayForecastURL,
         method: "GET"
     }).then(function (response) {
+        // add title to forecast section
         var forecastTitle = $("<h2>").text("Five Day Forecast:")
+        // empty out the forcast section on click
         $("#forecast").empty();
+        // add the title to the page
         $("#forecast").append(forecastTitle);
         // loop through all days
         for (let i = 0; i < response.list.length; i++) {
+            // empty out the days
             $("#day-" + i).empty();
             // Pull the date
             var dateFore = $("<p>").text("Date: " + response.list[i].dt_txt.substring(0, 10));
