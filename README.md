@@ -9,7 +9,6 @@ Develop an app using the OpenWeather AP to provide the weather outlook for multi
 
 ## URL to Working Page 
 
-
 [https://elliott-andrew.github.io/weather-dashboard/](https://elliott-andrew.github.io/weather-dashboard/)
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+![weather dashboard demo](https://raw.githubusercontent.com/elliott-andrew/weather-dashboard/main/Assets/weather-dashboard-preview.png)
