@@ -43,7 +43,6 @@ function renderCurrent() {
         url: currentWeatherURL,
         method: "GET"
     }).then(function (response) {
-        console.log("current weather", response);
         // Empty the current city section
         $("#current-city-info").empty()
         // add searched city to page
@@ -94,6 +93,7 @@ function fiveDayForecast() {
         url: fiveDayForecastURL,
         method: "GET"
     }).then(function (response) {
+        console.log(response);
         // add title to forecast section
         var forecastTitle = $("<h2>").text("Five Day Forecast:")
         // empty out the forcast section on click
@@ -108,6 +108,10 @@ function fiveDayForecast() {
             var dateFore = $("<p>").text("Date: " + response.list[i].dt_txt.substring(0, 10));
             // add the date to the page
             $("#day-" + i).append(dateFore);
+            // pull the icon
+            var iconFore = $("<img src='http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + ".png' style='margin-left:10px;'/>");
+            // add the icon to the page
+            $("#day-" + i).append(iconFore);
             // pull the temp
             var tempFore = $("<p>").text("Tempurature:\n" + response.list[i].main.temp + "°F");
             // add the temp to the page
