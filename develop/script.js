@@ -6,35 +6,54 @@ var currentLat;
 // Current longitude 
 var currentLon;
 // Searched Cities array
-var citiesSearchList = [];
-// Searched City
-var searchedCity = "Seattle";
+var citiesSearchList = JSON.parse(localStorage.getItem("Cities")) || [];
 
+
+
+
+
+
+
+// functions
 // search button click event
 $('#search-button').click(function (event) {
-    // empty out the search field after user submits
     // prevent page from reloading
     event.preventDefault();
-    // create an li element with the searched city
-    var city = $("<li>").text($('#city-text').val());
+    var cityInput = $('#city-text').val()
+
+
     // appaend the li element to the list of previously searched cities
-    citiesSearchList.push($('#city-text').val());
-    // add item to local storage
-    localStorage.setItem("Cities:", JSON.stringify(citiesSearchList));
-    // Add latest search to top of list
-    $('#city-list').prepend(city)
+
+    if (citiesSearchList.indexOf(cityInput) === -1) {
+
+        citiesSearchList.push(cityInput);
+        // add item to local storage
+        localStorage.setItem("Cities", JSON.stringify(citiesSearchList));
+    }
+
     // Add the latest search to the API URLs
     searchedCity = $('#city-text').val();
+
+    renderHistory(cityInput)
     // Display current weather
-    renderCurrent();
+    renderCurrent(cityInput);
     // Display five day forecast
-    fiveDayForecast();
+    // fiveDayForecast();
+    // empty out the search field after user submits
     $('#city-text').val('');
 });
 
+function renderHistory(city) {
+
+    // create an li element with the searched city
+    var liTag = $("<li>").text(city);
+    // Add latest search to top of list
+    $('#city-list').prepend(liTag)
+}
+
 // Functions
 // Pull five day forecast
-function renderCurrent() {
+function renderCurrent(searchedCity) {
     // URL for current weather data
     var currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=imperial&appid=${apiKey}`;
 
@@ -81,11 +100,13 @@ function renderCurrent() {
             // add the current UV index to the page
             $("#current-city-info").append(uvIndexNumber);
         });
+
     });
+    fiveDayForecast(searchedCity)
 }
 
 // Five Day
-function fiveDayForecast() {
+function fiveDayForecast(searchedCity) {
     // API URL
     var fiveDayForecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${searchedCity}&units=imperial&cnt=5&appid=${apiKey}`;
     // make API request
@@ -122,4 +143,17 @@ function fiveDayForecast() {
             $("#day-" + i).append(humFore);
         }
     });
+}
+
+
+
+
+if (citiesSearchList.length > 0) {
+    renderCurrent(citiesSearchList[citiesSearchList.length - 1])
+}
+
+
+for (let i = 0; i < citiesSearchList.length; i++) {
+
+    renderHistory(citiesSearchList[i])
 }
