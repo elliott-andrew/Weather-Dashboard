@@ -94,15 +94,15 @@ function renderCurrent(searchedCity) {
             // check UV index
             if (uvIndexNumber >= 8) {
                 // if high make color red
-                var uvHigh = $('<p style="color:red;">').text("UV index: " + uvIndexNumber);
+                var uvHigh = $('<p style="background-color:red;">').text("UV index: " + uvIndexNumber);
                 $("#current-city-info").append(uvHigh);
             } else if (uvIndexNumber >= 3 && uvIndexNumber <= 7.99) {
                 // if moderate make color yellow
-                var uvModerate = $('<p style="color:yellow;">').text("UV index: " + uvIndexNumber);
+                var uvModerate = $('<p style="background-color:yellow;">').text("UV index: " + uvIndexNumber);
                 $("#current-city-info").append(uvModerate);
             } else {
                 // if low make color green
-                var uvLow = $('<p style="color:green;">').text("UV index: " + uvIndexNumber);
+                var uvLow = $('<p style="background-color:green;">').text("UV index: " + uvIndexNumber);
                 $("#current-city-info").append(uvLow);
             }
         });
