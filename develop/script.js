@@ -126,7 +126,10 @@ function fiveDayForecast(searchedCity) {
             // empty out the days
             $("#day-" + i).empty();
             // Pull the date
-            var dateFore = $("<p>").text("Date: " + response.list[i].dt_txt.substring(0, 10));
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() + i + 1);
+            // put date in p tag
+            var dateFore = $("<p>").text("Date: " + date);
             // add the date to the page
             $("#day-" + i).append(dateFore);
             // pull the icon
