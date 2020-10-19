@@ -8,13 +8,7 @@ var currentLon;
 // Searched Cities array
 var citiesSearchList = JSON.parse(localStorage.getItem("Cities")) || [];
 
-
-
-
-
-
-
-// functions
+// Functions
 // search button click event
 $('#search-button').click(function (event) {
     // prevent page from reloading
@@ -50,8 +44,6 @@ function renderHistory(city) {
     // Add latest search to top of list
     $('#city-list').prepend(liTag)
 }
-
-// Functions
 // Pull five day forecast
 function renderCurrent(searchedCity) {
     // URL for current weather data
@@ -96,9 +88,23 @@ function renderCurrent(searchedCity) {
             method: "GET"
         }).then(function (uvresponse) {
             // get the current UV index
-            var uvIndexNumber = $("<p>").text("UV index: " + uvresponse.value);
+            var uvIndexNumber = uvresponse.value;
+            console.log(uvIndexNumber)
             // add the current UV index to the page
-            $("#current-city-info").append(uvIndexNumber);
+            // check UV index
+            if (uvIndexNumber >= 8) {
+                // if high make color red
+                var uvHigh = $('<p style="color:red;">').text("UV index: " + uvIndexNumber);
+                $("#current-city-info").append(uvHigh);
+            } else if (uvIndexNumber >= 3 && uvIndexNumber <= 7.99) {
+                // if moderate make color yellow
+                var uvModerate = $('<p style="color:yellow;">').text("UV index: " + uvIndexNumber);
+                $("#current-city-info").append(uvModerate);
+            } else {
+                // if low make color green
+                var uvLow = $('<p style="color:green;">').text("UV index: " + uvIndexNumber);
+                $("#current-city-info").append(uvLow);
+            }
         });
 
     });
@@ -148,13 +154,9 @@ function fiveDayForecast(searchedCity) {
     });
 }
 
-
-
-
 if (citiesSearchList.length > 0) {
     renderCurrent(citiesSearchList[citiesSearchList.length - 1])
 }
-
 
 for (let i = 0; i < citiesSearchList.length; i++) {
 
